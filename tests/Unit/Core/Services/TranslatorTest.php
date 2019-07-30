@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Unit\Services;
+namespace ReliqArts\CreoleTranslator\Tests\Unit\Core\Services;
 
 use PHPUnit\Framework\TestCase;
 use ReliqArts\CreoleTranslator\Core\Contracts\Translator as TranslatorContract;
