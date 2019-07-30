@@ -1,0 +1,17 @@
+# ignore
+
+/build/*
+/vendor
+/node_modules
+
+.DS_Store
+.idea
+.env
+.vscode
+!.gitkeep
+
+*cache
+
+composer.lock
+phpunit.xml
+Thumbs.db

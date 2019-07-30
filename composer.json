@@ -1,0 +1,40 @@
+{
+  "name": "reliqarts/creole-translator",
+  "description": "Fully configurable creole translator.",
+  "type": "library",
+  "keywords": [
+    "translator",
+    "creole",
+    "transcription"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Reliq",
+      "email": "reliq@reliqarts.com"
+    }
+  ],
+  "require": {
+    "php": "^7.2"
+  },
+  "require-dev": {
+    "phpro/grumphp": "^0.15.2",
+    "phpunit/phpunit": "^8.2",
+    "wearejust/grumphp-extra-tasks": "^2.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "ReliqArts\\CreoleTranslator\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "ReliqArts\\CreoleTranslator\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
