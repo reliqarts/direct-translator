@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Core\Services;
+namespace ReliqArts\CreoleTranslator\Service;
 
-use ReliqArts\CreoleTranslator\Core\Contracts\Translator as TranslatorContract;
+use ReliqArts\CreoleTranslator\Contract\Translator as TranslatorContract;
 
 final class Translator implements TranslatorContract
 {

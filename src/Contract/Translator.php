@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Core\Contracts;
+namespace ReliqArts\CreoleTranslator\Contract;
 
 interface Translator
 {

@@ -4,8 +4,10 @@
   "type": "library",
   "keywords": [
     "translator",
-    "creole",
-    "transcription"
+    "translation",
+    "statistical",
+    "machine",
+    "creole"
   ],
   "license": "MIT",
   "authors": [
@@ -15,7 +17,8 @@
     }
   ],
   "require": {
-    "php": "^7.2"
+    "php": "^7.2",
+    "ext-json": "*"
   },
   "require-dev": {
     "phpro/grumphp": "^0.15.2",

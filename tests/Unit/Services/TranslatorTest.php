@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Unit\Core\Services;
+namespace ReliqArts\CreoleTranslator\Tests\Unit\Services;
 
 use PHPUnit\Framework\TestCase;
-use ReliqArts\CreoleTranslator\Core\Contracts\Translator as TranslatorContract;
-use ReliqArts\CreoleTranslator\Core\Services\Translator;
+use ReliqArts\CreoleTranslator\Contract\Translator as TranslatorContract;
+use ReliqArts\CreoleTranslator\Service\Translator;
 
 /**
  * @internal
@@ -49,7 +49,7 @@ final class TranslatorTest extends TestCase
         return [
             [
                 'Hello! What\'s up?',
-                'Yow! Wha gwaan?',
+                'Yow! Whaa gwaan?',
             ],
             [
                 'I\'m going down the road.',
