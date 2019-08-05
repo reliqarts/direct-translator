@@ -7,9 +7,10 @@ namespace ReliqArts\CreoleTranslator\Vocabulary;
 use ReliqArts\CreoleTranslator\Contract\ConfigProvider;
 use ReliqArts\CreoleTranslator\Contract\Vocabulary as VocabularyContract;
 use ReliqArts\CreoleTranslator\Contract\VocabularyBuilder;
+use ReliqArts\CreoleTranslator\Contract\VocabularyLoader;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\LoadingFailed;
 
-final class Loader
+final class Loader implements VocabularyLoader
 {
     /**
      * @var ConfigProvider
@@ -34,7 +35,7 @@ final class Loader
     }
 
     /**
-     * @param string $key
+     * {@inheritdoc}
      *
      * @throws LoadingFailed
      *

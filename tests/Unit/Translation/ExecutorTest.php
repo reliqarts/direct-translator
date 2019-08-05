@@ -2,28 +2,35 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Unit\Service;
+namespace ReliqArts\CreoleTranslator\Tests\Unit\Translation;
 
 use PHPUnit\Framework\TestCase;
+use Prophecy\Prophecy\ObjectProphecy;
 use ReliqArts\CreoleTranslator\Contract\Translator as TranslatorContract;
-use ReliqArts\CreoleTranslator\Service\Translator;
+use ReliqArts\CreoleTranslator\Contract\VocabularyLoader;
+use ReliqArts\CreoleTranslator\Translation\Executor;
 
 /**
  * @internal
  * @coversNothing
  */
-final class TranslatorTest extends TestCase
+final class ExecutorTest extends TestCase
 {
     /**
      * @var TranslatorContract
      */
     private $subject;
+    /**
+     * @var ObjectProphecy|VocabularyLoader
+     */
+    private $vocabularyLoader;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->subject = new Translator();
+        $this->vocabularyLoader = $this->prophesize(VocabularyLoader::class);
+        $this->subject = new Executor($this->vocabularyLoader->reveal());
     }
 
     /**
@@ -31,6 +38,8 @@ final class TranslatorTest extends TestCase
      *
      * @param string $text
      * @param string $expectedResult
+     *
+     * @throws \Exception
      */
     public function testTranslate(string $text, string $expectedResult): void
     {

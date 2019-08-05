@@ -8,8 +8,7 @@ use ReliqArts\CreoleTranslator\Contract\ConfigProvider as ConfigProviderContract
 
 final class ConfigProvider implements ConfigProviderContract
 {
-    public const DIRECTORY_NAME_VOCABULARIES = 'vocabularies';
-
+    private const DIRECTORY_NAME_VOCABULARIES = 'vocabularies';
     private const RESOURCES_PATH = __DIR__ . '/../../../resources';
 
     /**

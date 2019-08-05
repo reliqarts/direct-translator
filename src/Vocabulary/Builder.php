@@ -33,7 +33,7 @@ final class Builder implements VocabularyBuilderContract
     }
 
     /**
-     * @param string $rawContent
+     * {@inheritdoc}
      *
      * @throws InvalidRawContent
      *
@@ -83,10 +83,10 @@ final class Builder implements VocabularyBuilderContract
      */
     private function validateParsedContent(array $parsedContent): bool
     {
-        $name = $parsedContent[self::CONTENT_KEY_NAME];
-        $baseLanguage = $parsedContent[self::CONTENT_KEY_BASE_LANGUAGE];
-        $words = $parsedContent[self::CONTENT_KEY_WORDS];
-        $phrases = $parsedContent[self::CONTENT_KEY_PHRASES];
+        $name = $parsedContent[self::CONTENT_KEY_NAME] ?? '';
+        $baseLanguage = $parsedContent[self::CONTENT_KEY_BASE_LANGUAGE] ?? '';
+        $words = $parsedContent[self::CONTENT_KEY_WORDS] ?? '';
+        $phrases = $parsedContent[self::CONTENT_KEY_PHRASES] ?? '';
 
         if (empty($name) || !is_string($name)) {
             throw new DomainException('Invalid vocabulary name!');

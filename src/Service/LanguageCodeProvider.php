@@ -207,7 +207,7 @@ final class LanguageCodeProvider implements LanguageCodeProviderContract
     }
 
     /**
-     * @param string $code
+     * {@inheritdoc}
      *
      * @return string
      */
@@ -217,7 +217,7 @@ final class LanguageCodeProvider implements LanguageCodeProviderContract
     }
 
     /**
-     * @param string $name
+     * {@inheritdoc}
      *
      * @return string
      */
@@ -227,7 +227,7 @@ final class LanguageCodeProvider implements LanguageCodeProviderContract
     }
 
     /**
-     * @param string $code
+     * {@inheritdoc}
      *
      * @return bool
      */
@@ -237,7 +237,7 @@ final class LanguageCodeProvider implements LanguageCodeProviderContract
     }
 
     /**
-     * @param string $name
+     * {@inheritdoc}
      *
      * @return bool
      */
