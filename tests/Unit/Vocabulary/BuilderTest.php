@@ -9,7 +9,7 @@ namespace ReliqArts\CreoleTranslator\Tests\Unit\Vocabulary;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
-use ReliqArts\CreoleTranslator\Contract\LanguageCodeProvider;
+use ReliqArts\CreoleTranslator\LanguageCodeProvider;
 use ReliqArts\CreoleTranslator\Contract\VocabularyBuilder as VocabularyBuilderContract;
 use ReliqArts\CreoleTranslator\Vocabulary\Builder;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
@@ -43,7 +43,7 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createFromRawContent
+     * @covers ::createStandardFromRawContent
      * @covers ::parseRawContent
      * @covers ::validateParsedContent
      *
@@ -86,7 +86,7 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createFromRawContent
+     * @covers ::createStandardFromRawContent
      * @covers ::parseRawContent
      * @covers ::validateParsedContent
      *
@@ -115,7 +115,7 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createFromRawContent
+     * @covers ::createStandardFromRawContent
      * @covers ::parseRawContent
      * @covers ::validateParsedContent
      *
@@ -146,7 +146,7 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createFromRawContent
+     * @covers ::createStandardFromRawContent
      * @covers ::parseRawContent
      * @covers ::validateParsedContent
      *
@@ -175,7 +175,7 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createFromRawContent
+     * @covers ::createStandardFromRawContent
      * @covers ::parseRawContent
      * @covers ::validateParsedContent
      *
@@ -204,7 +204,7 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createFromRawContent
+     * @covers ::createStandardFromRawContent
      * @covers ::parseRawContent
      * @covers ::validateParsedContent
      *

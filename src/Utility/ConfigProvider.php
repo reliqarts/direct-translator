@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Service;
+namespace ReliqArts\CreoleTranslator\Utility;
 
-use ReliqArts\CreoleTranslator\Contract\ConfigProvider as ConfigProviderContract;
-
-final class ConfigProvider implements ConfigProviderContract
+class ConfigProvider
 {
     private const DIRECTORY_NAME_VOCABULARIES = 'vocabularies';
-    private const RESOURCES_PATH = __DIR__ . '/../../../resources';
+    private const RESOURCES_PATH = __DIR__ . '/../../../Resources';
 
     /**
      * @return string

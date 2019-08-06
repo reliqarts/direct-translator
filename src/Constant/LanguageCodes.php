@@ -2,16 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Service;
+namespace ReliqArts\CreoleTranslator\Constant;
 
-use ReliqArts\CreoleTranslator\Contract\LanguageCodeProvider as LanguageCodeProviderContract;
-
-final class LanguageCodeProvider implements LanguageCodeProviderContract
+final class LanguageCodes
 {
-    /**
-     * @var string[]
-     */
-    private const CODES = [
+    public const ISO6391 = [
         'ab' => 'Abkhazian',
         'aa' => 'Afar',
         'af' => 'Afrikaans',
@@ -197,52 +192,4 @@ final class LanguageCodeProvider implements LanguageCodeProviderContract
         'za' => 'Zhuang, Chuang',
         'zu' => 'Zulu',
     ];
-
-    /**
-     * @return string[]
-     */
-    public function getCodes(): array
-    {
-        return static::CODES;
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return string
-     */
-    public function getLanguageNameByCode(string $code): string
-    {
-        return static::CODES[$code] ?? '';
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return string
-     */
-    public function getLanguageCodeByName(string $name): string
-    {
-        return array_search($name, static::CODES, true);
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return bool
-     */
-    public function languageCodeExists(string $code): bool
-    {
-        return !empty($this->getLanguageNameByCode($code));
-    }
-
-    /**
-     * {@inheritdoc}
-     *
-     * @return bool
-     */
-    public function languageNameExists(string $name): bool
-    {
-        return !empty($this->getLanguageCodeByName($name));
-    }
 }

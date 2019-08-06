@@ -5,12 +5,11 @@ declare(strict_types=1);
 namespace ReliqArts\CreoleTranslator\Vocabulary;
 
 use DomainException;
-use ReliqArts\CreoleTranslator\Contract\LanguageCodeProvider;
-use ReliqArts\CreoleTranslator\Contract\Vocabulary as VocabularyContract;
-use ReliqArts\CreoleTranslator\Contract\VocabularyBuilder as VocabularyBuilderContract;
+use ReliqArts\CreoleTranslator\Vocabulary;
+use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
 
-final class Builder implements VocabularyBuilderContract
+final class Builder
 {
     private const CONTENT_KEY_NAME = 'name';
     private const CONTENT_KEY_BASE_LANGUAGE = 'baseLanguage';
@@ -18,35 +17,35 @@ final class Builder implements VocabularyBuilderContract
     private const CONTENT_KEY_PHRASES = 'phrases';
 
     /**
-     * @var LanguageCodeProvider
+     * @var LanguageCodeChecker
      */
-    private $languageCodeProvider;
+    private $languageCodeValidator;
 
     /**
      * VocabularyBuilder constructor.
      *
-     * @param LanguageCodeProvider $languageCodeProvider
+     * @param LanguageCodeChecker $languageCodeChecker
      */
-    public function __construct(LanguageCodeProvider $languageCodeProvider)
+    public function __construct(LanguageCodeChecker $languageCodeChecker)
     {
-        $this->languageCodeProvider = $languageCodeProvider;
+        $this->languageCodeValidator = $languageCodeChecker;
     }
 
     /**
-     * {@inheritdoc}
      *
+     * @param string $rawContent
+     *
+     * @return Standard
      * @throws InvalidRawContent
-     *
-     * @return Vocabulary
      */
-    public function createFromRawContent(string $rawContent): VocabularyContract
+    public function createStandardFromRawContent(string $rawContent): Vocabulary
     {
         $parsedContent = $this->parseRawContent($rawContent);
 
         try {
             $this->validateParsedContent($parsedContent);
 
-            return new Vocabulary(
+            return new Standard(
                 $parsedContent[self::CONTENT_KEY_NAME],
                 $parsedContent[self::CONTENT_KEY_PHRASES],
                 $parsedContent[self::CONTENT_KEY_WORDS],
@@ -77,9 +76,9 @@ final class Builder implements VocabularyBuilderContract
     /**
      * @param array $parsedContent
      *
+     * @return bool
      * @throws DomainException
      *
-     * @return bool
      */
     private function validateParsedContent(array $parsedContent): bool
     {
@@ -92,7 +91,7 @@ final class Builder implements VocabularyBuilderContract
             throw new DomainException('Invalid vocabulary name!');
         }
 
-        if (empty($baseLanguage) || !$this->languageCodeProvider->languageCodeExists($baseLanguage)) {
+        if (!$this->languageCodeValidator->languageCodeExists($baseLanguage)) {
             throw new DomainException(sprintf('Invalid base language: `%s`', $baseLanguage));
         }
 

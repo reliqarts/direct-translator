@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace ReliqArts\CreoleTranslator\Translation;
 
-use ReliqArts\CreoleTranslator\Contract\Replacer;
-use ReliqArts\CreoleTranslator\Contract\Translator as TranslatorContract;
-use ReliqArts\CreoleTranslator\Contract\Vocabulary;
-use ReliqArts\CreoleTranslator\Contract\VocabularyLoader;
+use ReliqArts\CreoleTranslator\Exception as ExceptionContract;
 use ReliqArts\CreoleTranslator\Translation\Exception\TranslationFailed;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception as VocabularyException;
+use ReliqArts\CreoleTranslator\Translator;
+use ReliqArts\CreoleTranslator\Vocabulary;
+use ReliqArts\CreoleTranslator\VocabularyLoader;
 
-final class Executor implements TranslatorContract
+final class Executor implements Translator
 {
     /**
      * @var VocabularyLoader
@@ -47,7 +46,7 @@ final class Executor implements TranslatorContract
             $vocabulary = $this->vocabularyLoader->loadByKey($vocabularyKey);
 
             return $this->replace($text, $vocabulary);
-        } catch (VocabularyException $exception) {
+        } catch (ExceptionContract $exception) {
             throw new TranslationFailed(
                 sprintf('Translation failed. %s', $exception->getMessage()),
                 $exception->getCode(),

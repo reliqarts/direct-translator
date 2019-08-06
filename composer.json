@@ -18,7 +18,9 @@
   ],
   "require": {
     "php": "^7.2",
-    "ext-json": "*"
+    "ext-json": "*",
+    "illuminate/support": "^5.8",
+    "php-di/php-di": "^6.0"
   },
   "require-dev": {
     "phpro/grumphp": "^0.15.2",

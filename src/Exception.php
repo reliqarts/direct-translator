@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace ReliqArts\CreoleTranslator;
 
-use Exception as BaseException;
+use Throwable;
 
-abstract class Exception extends BaseException
+interface Exception extends Throwable
 {
 }

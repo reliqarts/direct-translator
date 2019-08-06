@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ReliqArts\CreoleTranslator\Vocabulary;
 
-use ReliqArts\CreoleTranslator\Contract\ConfigProvider;
-use ReliqArts\CreoleTranslator\Contract\Vocabulary as VocabularyContract;
-use ReliqArts\CreoleTranslator\Contract\VocabularyBuilder;
-use ReliqArts\CreoleTranslator\Contract\VocabularyLoader;
+use DomainException;
+use ReliqArts\CreoleTranslator\Utility\ConfigProvider;
+use ReliqArts\CreoleTranslator\Vocabulary as VocabularyContract;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\LoadingFailed;
+use ReliqArts\CreoleTranslator\VocabularyLoader;
 
 final class Loader implements VocabularyLoader
 {
@@ -18,39 +18,48 @@ final class Loader implements VocabularyLoader
     private $configProvider;
 
     /**
-     * @var VocabularyBuilder
+     * @var Builder
      */
     private $vocabularyBuilder;
 
     /**
      * VocabularyLoader constructor.
      *
-     * @param ConfigProvider    $configProvider
-     * @param VocabularyBuilder $vocabularyBuilder
+     * @param ConfigProvider $configProvider
+     * @param Builder        $vocabularyBuilder
      */
-    public function __construct(ConfigProvider $configProvider, VocabularyBuilder $vocabularyBuilder)
+    public function __construct(ConfigProvider $configProvider, Builder $vocabularyBuilder)
     {
         $this->configProvider = $configProvider;
         $this->vocabularyBuilder = $vocabularyBuilder;
     }
 
     /**
-     * {@inheritdoc}
-     *
-     * @throws LoadingFailed
+     * @param string $key
      *
      * @return VocabularyContract
+     * @throws LoadingFailed
      */
     public function loadByKey(string $key): VocabularyContract
     {
-        $vocabulariesPath = $this->configProvider->getVocabulariesPath();
-        $vocabFilePath = sprintf('%s/%s', $vocabulariesPath, $key);
-        $vocabContent = file_get_contents($vocabFilePath);
+        try {
+            $vocabulariesPath = $this->configProvider->getVocabulariesPath();
+            $vocabFilePath = sprintf('%s/%s', $vocabulariesPath, $key);
+            $vocabContent = file_get_contents($vocabFilePath);
 
-        if (!$vocabContent) {
-            throw new LoadingFailed(sprintf('Could not read expected vocabulary file: `%s`', $vocabFilePath));
+            if (!$vocabContent) {
+                throw new DomainException(
+                    sprintf('Vocabulary file empty or could not be read. (path: `%s`)', $vocabFilePath)
+                );
+            }
+
+            return $this->vocabularyBuilder->createStandardFromRawContent($vocabContent);
+        } catch (DomainException $exception) {
+            throw new LoadingFailed(
+                sprintf('Could not load vocabulary. %s', $exception->getMessage()),
+                $exception->getCode(),
+                $exception
+            );
         }
-
-        return $this->vocabularyBuilder->createFromRawContent($vocabContent);
     }
 }

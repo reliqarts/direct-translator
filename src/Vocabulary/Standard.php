@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ReliqArts\CreoleTranslator\Vocabulary;
 
-use ReliqArts\CreoleTranslator\Contract\Vocabulary as VocabularyContract;
+use ReliqArts\CreoleTranslator\Vocabulary;
 
-final class Vocabulary implements VocabularyContract
+final class Standard implements Vocabulary
 {
     /**
      * @var string
