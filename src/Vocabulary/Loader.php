@@ -5,13 +5,16 @@ declare(strict_types=1);
 namespace ReliqArts\CreoleTranslator\Vocabulary;
 
 use DomainException;
-use ReliqArts\CreoleTranslator\Utility\ConfigProvider;
+use Exception;
+use ReliqArts\CreoleTranslator\ConfigProvider;
 use ReliqArts\CreoleTranslator\Vocabulary as VocabularyContract;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\LoadingFailed;
 use ReliqArts\CreoleTranslator\VocabularyLoader;
 
 final class Loader implements VocabularyLoader
 {
+    private const VOCAB_FILE_EXTENSION = 'json';
+
     /**
      * @var ConfigProvider
      */
@@ -37,14 +40,15 @@ final class Loader implements VocabularyLoader
     /**
      * @param string $key
      *
-     * @return VocabularyContract
      * @throws LoadingFailed
+     *
+     * @return VocabularyContract
      */
     public function loadByKey(string $key): VocabularyContract
     {
         try {
             $vocabulariesPath = $this->configProvider->getVocabulariesPath();
-            $vocabFilePath = sprintf('%s/%s', $vocabulariesPath, $key);
+            $vocabFilePath = sprintf('%s/%s.%s', $vocabulariesPath, $key, self::VOCAB_FILE_EXTENSION);
             $vocabContent = file_get_contents($vocabFilePath);
 
             if (!$vocabContent) {
@@ -54,9 +58,9 @@ final class Loader implements VocabularyLoader
             }
 
             return $this->vocabularyBuilder->createStandardFromRawContent($vocabContent);
-        } catch (DomainException $exception) {
+        } catch (Exception $exception) {
             throw new LoadingFailed(
-                sprintf('Could not load vocabulary. %s', $exception->getMessage()),
+                sprintf('Could not load vocabulary by key: `%s`', $key),
                 $exception->getCode(),
                 $exception
             );

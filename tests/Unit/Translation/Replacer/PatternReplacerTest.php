@@ -1,4 +1,6 @@
-<?php /** @noinspection PhpTooManyParametersInspection */
+<?php
+
+/** @noinspection PhpTooManyParametersInspection */
 
 declare(strict_types=1);
 
@@ -7,15 +9,17 @@ namespace ReliqArts\CreoleTranslator\Tests\Unit\Translation\Replacer;
 use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use ReliqArts\CreoleTranslator\Contract\Replacer;
-use ReliqArts\CreoleTranslator\Contract\Vocabulary;
+use ReliqArts\CreoleTranslator\Translation\Replacer;
 use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
+use ReliqArts\CreoleTranslator\Vocabulary;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
- * Class PhraseReplacerTest
+ * Class PhraseReplacerTest.
  *
  * @coversDefaultClass \ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer
+ *
+ * @internal
  */
 final class PatternReplacerTest extends TestCase
 {
@@ -42,8 +46,8 @@ final class PatternReplacerTest extends TestCase
 
     /**
      * @dataProvider replaceDataProvider
-     * @covers ::replace
      * @covers ::buildPatternsAndReplacementsFromMap
+     * @covers ::replace
      *
      * @param string $inputText
      * @param array  $phrases

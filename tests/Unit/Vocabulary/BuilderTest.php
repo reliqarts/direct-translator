@@ -1,6 +1,6 @@
 <?php
 
-/** @noinspection PhpUndefinedMethodInspection @noinspection PhpParamsInspection */
+/** @noinspection PhpParamsInspection */
 
 declare(strict_types=1);
 
@@ -9,8 +9,7 @@ namespace ReliqArts\CreoleTranslator\Tests\Unit\Vocabulary;
 use Exception;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
-use ReliqArts\CreoleTranslator\LanguageCodeProvider;
-use ReliqArts\CreoleTranslator\Contract\VocabularyBuilder as VocabularyBuilderContract;
+use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
 use ReliqArts\CreoleTranslator\Vocabulary\Builder;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
 
@@ -24,12 +23,12 @@ use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
 final class BuilderTest extends TestCase
 {
     /**
-     * @var LanguageCodeProvider|ObjectProphecy
+     * @var Builder|ObjectProphecy
      */
     private $languageCodeProvider;
 
     /**
-     * @var VocabularyBuilderContract
+     * @var Builder
      */
     private $subject;
 
@@ -38,7 +37,7 @@ final class BuilderTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->languageCodeProvider = $this->prophesize(LanguageCodeProvider::class);
+        $this->languageCodeProvider = $this->prophesize(LanguageCodeChecker::class);
         $this->subject = new Builder($this->languageCodeProvider->reveal());
     }
 
@@ -67,7 +66,7 @@ final class BuilderTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(true);
 
-        $result = $this->subject->createFromRawContent($rawContent);
+        $result = $this->subject->createStandardFromRawContent($rawContent);
 
         $this->assertSame('Jamaican Patois', $result->getName());
         $this->assertSame('en', $result->getLanguageCode());
@@ -111,7 +110,7 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidRawContent::class);
         $this->expectExceptionMessage('Invalid vocabulary name!');
 
-        $this->subject->createFromRawContent($rawContent);
+        $this->subject->createStandardFromRawContent($rawContent);
     }
 
     /**
@@ -142,7 +141,7 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidRawContent::class);
         $this->expectExceptionMessage('Invalid base language: `en`');
 
-        $this->subject->createFromRawContent($rawContent);
+        $this->subject->createStandardFromRawContent($rawContent);
     }
 
     /**
@@ -171,7 +170,7 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidRawContent::class);
         $this->expectExceptionMessage('Invalid type specified for words.');
 
-        $this->subject->createFromRawContent($rawContent);
+        $this->subject->createStandardFromRawContent($rawContent);
     }
 
     /**
@@ -200,7 +199,7 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidRawContent::class);
         $this->expectExceptionMessage('No words defined for vocabulary!');
 
-        $this->subject->createFromRawContent($rawContent);
+        $this->subject->createStandardFromRawContent($rawContent);
     }
 
     /**
@@ -229,6 +228,6 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidRawContent::class);
         $this->expectExceptionMessage('Invalid type specified for phrases.');
 
-        $this->subject->createFromRawContent($rawContent);
+        $this->subject->createStandardFromRawContent($rawContent);
     }
 }

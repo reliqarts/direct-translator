@@ -18,6 +18,11 @@ final class Executor implements Translator
     private $vocabularyLoader;
 
     /**
+     * @var Formatters
+     */
+    private $formatters;
+
+    /**
      * @var Replacers
      */
     private $replacers;
@@ -30,6 +35,7 @@ final class Executor implements Translator
     public function __construct(VocabularyLoader $vocabularyLoader)
     {
         $this->vocabularyLoader = $vocabularyLoader;
+        $this->formatters = new Formatters();
         $this->replacers = new Replacers();
     }
 
@@ -45,7 +51,7 @@ final class Executor implements Translator
         try {
             $vocabulary = $this->vocabularyLoader->loadByKey($vocabularyKey);
 
-            return $this->replace($text, $vocabulary);
+            return $this->format($this->replace($text, $vocabulary));
         } catch (ExceptionContract $exception) {
             throw new TranslationFailed(
                 sprintf('Translation failed. %s', $exception->getMessage()),
@@ -56,11 +62,35 @@ final class Executor implements Translator
     }
 
     /**
+     * @param Formatter $formatter
+     */
+    public function addFormatter(Formatter $formatter): void
+    {
+        $this->formatters->add($formatter);
+    }
+
+    /**
      * @param Replacer $replacer
      */
     public function addReplacer(Replacer $replacer): void
     {
         $this->replacers->add($replacer);
+    }
+
+    /**
+     * @param string $inputText
+     *
+     * @return string
+     */
+    private function format(string $inputText): string
+    {
+        $result = $inputText;
+
+        foreach ($this->formatters as $formatter) {
+            $result = $formatter->apply($result);
+        }
+
+        return $result;
     }
 
     /**

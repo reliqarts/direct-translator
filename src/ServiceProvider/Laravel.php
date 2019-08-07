@@ -4,42 +4,66 @@ declare(strict_types=1);
 
 namespace ReliqArts\CreoleTranslator\ServiceProvider;
 
-use Illuminate\Contracts\Support\DeferrableProvider;
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Psr\Container\ContainerExceptionInterface;
+use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
 use ReliqArts\CreoleTranslator\ServiceProvider;
-use ReliqArts\CreoleTranslator\Translator;
-use ReliqArts\CreoleTranslator\VocabularyLoader;
 use ReliqArts\CreoleTranslator\Translation\Executor;
+use ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase;
 use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
+use ReliqArts\CreoleTranslator\Translator;
+use ReliqArts\CreoleTranslator\Utility\ConfigProvider;
 use ReliqArts\CreoleTranslator\Vocabulary\Loader;
+use ReliqArts\CreoleTranslator\VocabularyLoader;
 
-final class Laravel extends IlluminateServiceProvider implements ServiceProvider, DeferrableProvider
+class Laravel extends IlluminateServiceProvider implements ServiceProvider
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function register(): void
     {
+        $this->app->singleton(ConfigProviderContract::class, ConfigProvider::class);
         $this->app->singleton(VocabularyLoader::class, Loader::class);
-        $this->app->singleton(Translator::class, function (): Translator {
-            $vocabularyLoader = $this->app->get(VocabularyLoader::class);
-            $executor = new Executor($vocabularyLoader);
+        $this->app->singleton(Translator::class, function (Application $app): Translator {
+            $executor = new Executor($app->get(VocabularyLoader::class));
 
-            $executor->addReplacer(new PatternReplacer());
+            $executor->addFormatter($app->get(SentenceCase::class));
+            $executor->addReplacer($app->get(PatternReplacer::class));
 
             return $executor;
         });
     }
 
     /**
-     * @param string $key
+     * @return array
+     */
+    public function provides(): array
+    {
+        return [
+            Translator::class,
+            VocabularyLoader::class,
+        ];
+    }
+
+    /**
+     * @param string $name
+     *
+     * @throws ContainerExceptionInterface
      *
      * @return mixed
-     * @throws ContainerExceptionInterface
      */
-    public function resolve(string $key)
+    public function resolve(string $name)
     {
-        return $this->app->get($key);
+        return $this->app->get($name);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function set(string $name, ...$concrete)
+    {
+        $this->app->bind($name, ...$concrete);
     }
 }

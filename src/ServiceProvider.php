@@ -9,15 +9,17 @@ use Psr\Container\ContainerExceptionInterface;
 interface ServiceProvider
 {
     /**
-     * Register application services.
+     * @param string $name
+     * @param mixed  ...$concrete
      */
-    public function register(): void;
+    public function set(string $name, ...$concrete);
 
     /**
-     * @param string $key
+     * @param string $name
+     *
+     * @throws ContainerExceptionInterface
      *
      * @return mixed
-     * @throws ContainerExceptionInterface
      */
-    public function resolve(string $key);
+    public function resolve(string $name);
 }

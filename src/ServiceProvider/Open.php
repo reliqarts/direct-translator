@@ -5,10 +5,22 @@ declare(strict_types=1);
 namespace ReliqArts\CreoleTranslator\ServiceProvider;
 
 use DI\Container;
+use DI\ContainerBuilder;
+use Exception;
 use Psr\Container\ContainerExceptionInterface;
-use ReliqArts\CreoleTranslator\Contract\ServiceProvider;
+use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
+use ReliqArts\CreoleTranslator\ServiceProvider;
+use ReliqArts\CreoleTranslator\Translation\Executor;
+use ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase;
+use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
+use ReliqArts\CreoleTranslator\Translator;
+use ReliqArts\CreoleTranslator\Utility\ConfigProvider;
+use ReliqArts\CreoleTranslator\Vocabulary\Loader;
+use ReliqArts\CreoleTranslator\VocabularyLoader;
+use function DI\autowire;
+use function DI\get;
 
-final class Open implements ServiceProvider
+class Open implements ServiceProvider
 {
     /**
      * @var Container
@@ -18,29 +30,56 @@ final class Open implements ServiceProvider
     /**
      * PHPDIServiceProvider constructor.
      *
-     * @param Container $container
+     * @throws Exception
      */
-    public function __construct(Container $container)
+    public function __construct()
     {
-        $this->container = $container;
+        $this->init();
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
-    public function register(): void
+    public function set(string $name, ...$concrete)
     {
-        // TODO: Implement register() method.
+        $this->container->set($name, $concrete[0]);
     }
 
     /**
-     * @param string $key
+     * @param string $name
+     *
+     * @throws ContainerExceptionInterface
      *
      * @return mixed
-     * @throws ContainerExceptionInterface
      */
-    public function resolve(string $key)
+    public function resolve(string $name)
     {
-        return $this->container->get($key);
+        return $this->container->get($name);
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected function init(): void
+    {
+        $containerBuilder = new ContainerBuilder();
+        $containerBuilder->addDefinitions($this->getDefinitions());
+
+        $this->container = $containerBuilder->build();
+    }
+
+    /**
+     * @return array
+     */
+    protected function getDefinitions(): array
+    {
+        return [
+            ConfigProviderContract::class => get(ConfigProvider::class),
+            Executor::class => autowire()
+                ->method('addReplacer', get(PatternReplacer::class))
+                ->method('addFormatter', get(SentenceCase::class)),
+            Translator::class => get(Executor::class),
+            VocabularyLoader::class => get(Loader::class),
+        ];
     }
 }
