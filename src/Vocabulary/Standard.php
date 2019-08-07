@@ -75,4 +75,12 @@ final class Standard implements Vocabulary
     {
         return $this->words;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function jsonSerialize(): array
+    {
+        return (array)$this;
+    }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace ReliqArts\CreoleTranslator;
 
-interface Vocabulary
+use JsonSerializable;
+
+interface Vocabulary extends JsonSerializable
 {
     public function getName(): string;
 

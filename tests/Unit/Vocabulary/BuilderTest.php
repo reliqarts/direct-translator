@@ -23,9 +23,9 @@ use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
 final class BuilderTest extends TestCase
 {
     /**
-     * @var Builder|ObjectProphecy
+     * @var LanguageCodeChecker|ObjectProphecy
      */
-    private $languageCodeProvider;
+    private $languageCodeChecker;
 
     /**
      * @var Builder
@@ -37,8 +37,8 @@ final class BuilderTest extends TestCase
      */
     protected function setUp(): void
     {
-        $this->languageCodeProvider = $this->prophesize(LanguageCodeChecker::class);
-        $this->subject = new Builder($this->languageCodeProvider->reveal());
+        $this->languageCodeChecker = $this->prophesize(LanguageCodeChecker::class);
+        $this->subject = new Builder($this->languageCodeChecker->reveal());
     }
 
     /**
@@ -61,7 +61,7 @@ final class BuilderTest extends TestCase
           }
         }';
 
-        $this->languageCodeProvider
+        $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldBeCalledTimes(1)
             ->willReturn(true);
@@ -103,7 +103,7 @@ final class BuilderTest extends TestCase
           }
         }';
 
-        $this->languageCodeProvider
+        $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldNotBeCalled();
 
@@ -133,7 +133,7 @@ final class BuilderTest extends TestCase
           }
         }';
 
-        $this->languageCodeProvider
+        $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldBeCalledTimes(1)
             ->willReturn(false);
@@ -162,7 +162,7 @@ final class BuilderTest extends TestCase
           }
         }';
 
-        $this->languageCodeProvider
+        $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldBeCalledTimes(1)
             ->willReturn(true);
@@ -191,7 +191,7 @@ final class BuilderTest extends TestCase
           }
         }';
 
-        $this->languageCodeProvider
+        $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldBeCalledTimes(1)
             ->willReturn(true);
@@ -220,7 +220,7 @@ final class BuilderTest extends TestCase
           "phrases": "ds"
         }';
 
-        $this->languageCodeProvider
+        $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldBeCalledTimes(1)
             ->willReturn(true);
