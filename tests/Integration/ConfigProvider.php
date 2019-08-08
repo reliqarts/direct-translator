@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace ReliqArts\CreoleTranslator\Tests\Integration;
 
-use ReliqArts\CreoleTranslator\Utility\ConfigProvider as UtilityConfigProvider;
+use ReliqArts\CreoleTranslator\ConfigProvider\Open as OpenConfigProvider;
 
-final class ConfigProvider extends UtilityConfigProvider
+final class ConfigProvider extends OpenConfigProvider
 {
     /**
      * @return string

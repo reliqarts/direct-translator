@@ -7,7 +7,7 @@ namespace ReliqArts\CreoleTranslator\Translation;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class Replacers
+ * Class Replacers.
  *
  * @method Replacer[] getIterator()
  */

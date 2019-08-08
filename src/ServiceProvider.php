@@ -8,6 +8,8 @@ use Psr\Container\ContainerExceptionInterface;
 
 interface ServiceProvider
 {
+    public const ASSETS_DIR = __DIR__ . '/..';
+
     /**
      * @param string $name
      * @param mixed  ...$concrete

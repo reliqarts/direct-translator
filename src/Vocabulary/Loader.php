@@ -47,8 +47,7 @@ final class Loader implements VocabularyLoader
     public function loadByKey(string $key): VocabularyContract
     {
         try {
-            $vocabulariesPath = $this->configProvider->getVocabulariesPath();
-            $vocabFilePath = sprintf('%s/%s.%s', $vocabulariesPath, $key, self::VOCAB_FILE_EXTENSION);
+            $vocabFilePath = $this->getVocabularyFilePath($key);
             $vocabContent = file_get_contents($vocabFilePath);
 
             if (!$vocabContent) {
@@ -65,5 +64,29 @@ final class Loader implements VocabularyLoader
                 $exception
             );
         }
+    }
+
+    /**
+     * @param string $key
+     *
+     * @throws DomainException
+     *
+     * @return null|string
+     */
+    private function getVocabularyFilePath(string $key): ?string
+    {
+        $vocabularyDirectories = $this->configProvider->getVocabularyDirectories();
+
+        foreach ($vocabularyDirectories as $directory) {
+            $path = sprintf('%s/%s.%s', $directory, $key, self::VOCAB_FILE_EXTENSION);
+
+            if ($vocabularyPath = realpath($path)) {
+                return $vocabularyPath;
+            }
+        }
+
+        throw new DomainException(
+            sprintf('Vocabulary file not found for key: `%s`.', $key)
+        );
     }
 }

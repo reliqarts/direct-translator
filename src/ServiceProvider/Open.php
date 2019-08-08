@@ -9,12 +9,12 @@ use DI\ContainerBuilder;
 use Exception;
 use Psr\Container\ContainerExceptionInterface;
 use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
+use ReliqArts\CreoleTranslator\ConfigProvider\Open as OpenConfigProvider;
 use ReliqArts\CreoleTranslator\ServiceProvider;
 use ReliqArts\CreoleTranslator\Translation\Executor;
 use ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase;
 use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
 use ReliqArts\CreoleTranslator\Translator;
-use ReliqArts\CreoleTranslator\Utility\ConfigProvider;
 use ReliqArts\CreoleTranslator\Vocabulary\Loader;
 use ReliqArts\CreoleTranslator\VocabularyLoader;
 use function DI\autowire;
@@ -74,10 +74,12 @@ class Open implements ServiceProvider
     protected function getDefinitions(): array
     {
         return [
-            ConfigProviderContract::class => get(ConfigProvider::class),
+            ConfigProviderContract::class => get(OpenConfigProvider::class),
             Executor::class => autowire()
                 ->method('addReplacer', get(PatternReplacer::class))
                 ->method('addFormatter', get(SentenceCase::class)),
+            OpenConfigProvider::class => autowire()
+                ->method('load'),
             Translator::class => get(Executor::class),
             VocabularyLoader::class => get(Loader::class),
         ];

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace ReliqArts\CreoleTranslator\Vocabulary;
 
 use DomainException;
-use ReliqArts\CreoleTranslator\Vocabulary;
 use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
+use ReliqArts\CreoleTranslator\Vocabulary;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
 
 final class Builder
@@ -32,11 +32,11 @@ final class Builder
     }
 
     /**
-     *
      * @param string $rawContent
      *
-     * @return Standard
      * @throws InvalidRawContent
+     *
+     * @return Standard
      */
     public function createStandardFromRawContent(string $rawContent): Vocabulary
     {
@@ -76,9 +76,9 @@ final class Builder
     /**
      * @param array $parsedContent
      *
-     * @return bool
      * @throws DomainException
      *
+     * @return bool
      */
     private function validateParsedContent(array $parsedContent): bool
     {

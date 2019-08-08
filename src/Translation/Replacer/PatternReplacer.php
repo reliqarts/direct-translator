@@ -10,7 +10,7 @@ use ReliqArts\CreoleTranslator\Vocabulary;
 final class PatternReplacer implements Replacer
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      *
      * @return string
      */
@@ -32,7 +32,7 @@ final class PatternReplacer implements Replacer
      *
      * @return string[]
      */
-    protected function buildPatternsAndReplacementsFromMap(array $map, string $direction): array
+    private function buildPatternsAndReplacementsFromMap(array $map, string $direction): array
     {
         $finalMap = $map;
         if ($direction === self::DIRECTION_RTL) {

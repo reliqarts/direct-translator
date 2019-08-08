@@ -9,8 +9,9 @@ interface VocabularyLoader
     /**
      * @param string $key
      *
-     * @return Vocabulary
      * @throws Exception
+     *
+     * @return Vocabulary
      */
     public function loadByKey(string $key): Vocabulary;
 }
