@@ -9,10 +9,10 @@ use ReliqArts\CreoleTranslator\ConfigProvider\Open as OpenConfigProvider;
 final class ConfigProvider extends OpenConfigProvider
 {
     /**
-     * @return string
+     * @return array
      */
-    public function getVocabulariesPath(): string
+    public function getVocabularyDirectories(): array
     {
-        return __DIR__ . '/../Fixtures/vocabularies';
+        return [__DIR__ . '/../Fixtures/vocabularies'];
     }
 }

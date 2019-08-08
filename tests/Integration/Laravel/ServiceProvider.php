@@ -6,7 +6,7 @@ namespace ReliqArts\CreoleTranslator\Tests\Integration\Laravel;
 
 use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
 use ReliqArts\CreoleTranslator\ServiceProvider\Laravel;
-use ReliqArts\CreoleTranslator\Tests\Integration\Open;
+use ReliqArts\CreoleTranslator\Tests\Integration\ConfigProvider;
 
 final class ServiceProvider extends Laravel
 {
@@ -14,6 +14,6 @@ final class ServiceProvider extends Laravel
     {
         parent::register();
 
-        $this->app->singleton(ConfigProviderContract::class, Open::class);
+        $this->app->singleton(ConfigProviderContract::class, ConfigProvider::class);
     }
 }
