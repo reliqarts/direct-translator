@@ -21,20 +21,30 @@ final class Loader implements VocabularyLoader
     private $configProvider;
 
     /**
+     * @var Reader
+     */
+    private $reader;
+
+    /**
      * @var Builder
      */
-    private $vocabularyBuilder;
+    private $builder;
 
     /**
      * VocabularyLoader constructor.
      *
      * @param ConfigProvider $configProvider
+     * @param Reader         $reader
      * @param Builder        $vocabularyBuilder
      */
-    public function __construct(ConfigProvider $configProvider, Builder $vocabularyBuilder)
-    {
+    public function __construct(
+        ConfigProvider $configProvider,
+        Reader $reader,
+        Builder $vocabularyBuilder
+    ) {
         $this->configProvider = $configProvider;
-        $this->vocabularyBuilder = $vocabularyBuilder;
+        $this->reader = $reader;
+        $this->builder = $vocabularyBuilder;
     }
 
     /**
@@ -47,16 +57,9 @@ final class Loader implements VocabularyLoader
     public function loadByKey(string $key): VocabularyContract
     {
         try {
-            $vocabFilePath = $this->getVocabularyFilePath($key);
-            $vocabContent = file_get_contents($vocabFilePath);
+            $filePath = $this->getVocabularyFilePath($key);
 
-            if (!$vocabContent) {
-                throw new DomainException(
-                    sprintf('Vocabulary file empty or could not be read. (path: `%s`)', $vocabFilePath)
-                );
-            }
-
-            return $this->vocabularyBuilder->createStandardFromRawContent($vocabContent);
+            return $this->builder->createStandard($this->reader->read($filePath));
         } catch (Exception $exception) {
             throw new LoadingFailed(
                 sprintf('Could not load vocabulary by key: `%s`', $key),

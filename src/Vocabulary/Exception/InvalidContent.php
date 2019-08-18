@@ -6,6 +6,6 @@ namespace ReliqArts\CreoleTranslator\Vocabulary\Exception;
 
 use ReliqArts\CreoleTranslator\Vocabulary\Exception;
 
-final class InvalidRawContent extends Exception
+final class InvalidContent extends Exception
 {
 }

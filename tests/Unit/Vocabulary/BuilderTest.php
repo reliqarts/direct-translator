@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
 use ReliqArts\CreoleTranslator\Vocabulary\Builder;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
+use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
 
 /**
  * Class VocabularyBuilderTest.
@@ -38,35 +38,35 @@ final class BuilderTest extends TestCase
     protected function setUp(): void
     {
         $this->languageCodeChecker = $this->prophesize(LanguageCodeChecker::class);
-        $this->subject = new Builder($this->languageCodeChecker->reveal());
-    }
-
-    /**
-     * @covers ::createStandardFromRawContent
-     * @covers ::parseRawContent
-     * @covers ::validateParsedContent
-     *
-     * @throws Exception
-     */
-    public function testCreateFromRawContent(): void
-    {
-        $rawContent = '{
-          "name": "Jamaican Patois",
-          "baseLanguage": "en",
-          "words": {
-            "hi": "yo"
-          },
-          "phrases": {
-            "how are you": "\'ow u du"
-          }
-        }';
 
         $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldBeCalledTimes(1)
             ->willReturn(true);
 
-        $result = $this->subject->createStandardFromRawContent($rawContent);
+        $this->subject = new Builder($this->languageCodeChecker->reveal());
+    }
+
+    /**
+     * @covers ::createStandard
+     * @covers ::validateParsedContent
+     *
+     * @throws Exception
+     */
+    public function testCreateFromRawContent(): void
+    {
+        $content = [
+            'name' => 'Jamaican Patois',
+            'baseLanguage' => 'en',
+            'words' => [
+                'hi' => 'yo',
+            ],
+            'phrases' => [
+                'how are you' => '\'ow u du',
+            ],
+        ];
+
+        $result = $this->subject->createStandard($content);
 
         $this->assertSame('Jamaican Patois', $result->getName());
         $this->assertSame('en', $result->getLanguageCode());
@@ -85,149 +85,130 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createStandardFromRawContent
-     * @covers ::parseRawContent
+     * @covers ::createStandard
      * @covers ::validateParsedContent
      *
      * @throws Exception
      */
     public function testCreateFromRawContentWhenNameIsInvalid(): void
     {
-        $rawContent = '{
-          "baseLanguage": "en",
-          "words": {
-            "hi": "yo"
-          },
-          "phrases": {
-            "how are you": "\'ow u du"
-          }
-        }';
+        $content = [
+            'name' => '',
+            'baseLanguage' => 'en',
+            'words' => [
+                'hi' => 'yo',
+            ],
+            'phrases' => [
+                'how are you' => '\'ow u du',
+            ],
+        ];
 
         $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldNotBeCalled();
 
-        $this->expectException(InvalidRawContent::class);
+        $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid vocabulary name!');
 
-        $this->subject->createStandardFromRawContent($rawContent);
+        $this->subject->createStandard($content);
     }
 
     /**
-     * @covers ::createStandardFromRawContent
-     * @covers ::parseRawContent
+     * @covers ::createStandard
      * @covers ::validateParsedContent
      *
      * @throws Exception
      */
     public function testCreateFromRawContentWhenBaseLanguageIsInvalid(): void
     {
-        $rawContent = '{
-          "name": "Jamaican Patois",
-          "baseLanguage": "en",
-          "words": {
-            "hi": "yo"
-          },
-          "phrases": {
-            "how are you": "\'ow u du"
-          }
-        }';
+        $content = [
+            'name' => 'Jamaican Patois',
+            'baseLanguage' => 'en',
+            'words' => [
+                'hi' => 'yo',
+            ],
+            'phrases' => [
+                'how are you' => '\'ow u du',
+            ],
+        ];
 
         $this->languageCodeChecker
             ->languageCodeExists('en')
             ->shouldBeCalledTimes(1)
             ->willReturn(false);
 
-        $this->expectException(InvalidRawContent::class);
+        $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid base language: `en`');
 
-        $this->subject->createStandardFromRawContent($rawContent);
+        $this->subject->createStandard($content);
     }
 
     /**
-     * @covers ::createStandardFromRawContent
-     * @covers ::parseRawContent
+     * @covers ::createStandard
      * @covers ::validateParsedContent
      *
      * @throws Exception
      */
     public function testCreateFromRawContentWhenWordsIsInvalid(): void
     {
-        $rawContent = '{
-          "name": "Jamaican Patois",
-          "baseLanguage": "en",
-          "words": "ds",
-          "phrases": {
-            "how are you": "\'ow u du"
-          }
-        }';
+        $content = [
+            'name' => 'Jamaican Patois',
+            'baseLanguage' => 'en',
+            'words' => 'foo,bar',
+            'phrases' => [
+                'how are you' => '\'ow u du',
+            ],
+        ];
 
-        $this->languageCodeChecker
-            ->languageCodeExists('en')
-            ->shouldBeCalledTimes(1)
-            ->willReturn(true);
-
-        $this->expectException(InvalidRawContent::class);
+        $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid type specified for words.');
 
-        $this->subject->createStandardFromRawContent($rawContent);
+        $this->subject->createStandard($content);
     }
 
     /**
-     * @covers ::createStandardFromRawContent
-     * @covers ::parseRawContent
+     * @covers ::createStandard
      * @covers ::validateParsedContent
      *
      * @throws Exception
      */
     public function testCreateFromRawContentWhenWordListIsEmpty(): void
     {
-        $rawContent = '{
-          "name": "Jamaican Patois",
-          "baseLanguage": "en",
-          "words": {},
-          "phrases": {
-            "how are you": "\'ow u du"
-          }
-        }';
+        $content = [
+            'name' => 'Jamaican Patois',
+            'baseLanguage' => 'en',
+            'words' => [],
+            'phrases' => [
+                'how are you' => '\'ow u du',
+            ],
+        ];
 
-        $this->languageCodeChecker
-            ->languageCodeExists('en')
-            ->shouldBeCalledTimes(1)
-            ->willReturn(true);
-
-        $this->expectException(InvalidRawContent::class);
+        $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('No words defined for vocabulary!');
 
-        $this->subject->createStandardFromRawContent($rawContent);
+        $this->subject->createStandard($content);
     }
 
     /**
-     * @covers ::createStandardFromRawContent
-     * @covers ::parseRawContent
+     * @covers ::createStandard
      * @covers ::validateParsedContent
      *
      * @throws Exception
      */
     public function testCreateFromRawContentWhenPhrasesIsInvalid(): void
     {
-        $rawContent = '{
-          "name": "Jamaican Patois",
-          "baseLanguage": "en",
-          "words": {
-            "hi": "yo"
-          },
-          "phrases": "ds"
-        }';
+        $content = [
+            'name' => 'Jamaican Patois',
+            'baseLanguage' => 'en',
+            'words' => [
+                'hi' => 'yo',
+            ],
+            'phrases' => 'how are you, \'ow u du',
+        ];
 
-        $this->languageCodeChecker
-            ->languageCodeExists('en')
-            ->shouldBeCalledTimes(1)
-            ->willReturn(true);
-
-        $this->expectException(InvalidRawContent::class);
+        $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid type specified for phrases.');
 
-        $this->subject->createStandardFromRawContent($rawContent);
+        $this->subject->createStandard($content);
     }
 }

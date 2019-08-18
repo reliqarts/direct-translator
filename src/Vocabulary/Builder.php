@@ -7,7 +7,7 @@ namespace ReliqArts\CreoleTranslator\Vocabulary;
 use DomainException;
 use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
 use ReliqArts\CreoleTranslator\Vocabulary;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidRawContent;
+use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
 
 final class Builder
 {
@@ -32,45 +32,33 @@ final class Builder
     }
 
     /**
-     * @param string $rawContent
+     * @param array $content
      *
-     * @throws InvalidRawContent
+     *@throws InvalidContent
      *
      * @return Standard
      */
-    public function createStandardFromRawContent(string $rawContent): Vocabulary
+    public function createStandard(array $content): Vocabulary
     {
-        $parsedContent = $this->parseRawContent($rawContent);
-
         try {
-            $this->validateParsedContent($parsedContent);
+            $this->validateParsedContent($content);
 
             return new Standard(
-                $parsedContent[self::CONTENT_KEY_NAME],
-                $parsedContent[self::CONTENT_KEY_PHRASES],
-                $parsedContent[self::CONTENT_KEY_WORDS],
-                $parsedContent[self::CONTENT_KEY_BASE_LANGUAGE]
+                $content[self::CONTENT_KEY_NAME],
+                $content[self::CONTENT_KEY_PHRASES],
+                $content[self::CONTENT_KEY_WORDS],
+                $content[self::CONTENT_KEY_BASE_LANGUAGE]
             );
         } catch (DomainException $exception) {
-            throw new InvalidRawContent(
+            throw new InvalidContent(
                 sprintf(
-                    'Raw content of vocabulary is invalid! %s',
+                    'Content of vocabulary is invalid! %s',
                     $exception->getMessage()
                 ),
                 $exception->getCode(),
                 $exception
             );
         }
-    }
-
-    /**
-     * @param string $rawContent
-     *
-     * @return array
-     */
-    private function parseRawContent(string $rawContent): array
-    {
-        return json_decode($rawContent, true);
     }
 
     /**
