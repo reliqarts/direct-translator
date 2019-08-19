@@ -17,7 +17,7 @@ use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
 /**
  * Class VocabularyBuilderTest.
  *
- * @coversDefaultClass \ReliqArts\CreoleTranslator\Vocabulary\Builder
+ * @coversDefaultClass \ReliqArts\CreoleTranslator\Vocabulary\Builder\StandardVocabularyBuilder
  *
  * @internal
  */
@@ -49,6 +49,9 @@ final class StandardVocabularyBuilderTest extends TestCase
     }
 
     /**
+     * @covers ::<public>
+     * @covers ::validateContent
+     *
      * @throws Exception
      */
     public function testCreate(): void
@@ -83,6 +86,9 @@ final class StandardVocabularyBuilderTest extends TestCase
     }
 
     /**
+     * @covers ::<public>
+     * @covers ::validateContent
+     *
      * @throws Exception
      */
     public function testCreateWhenNameIsInvalid(): void
@@ -109,6 +115,9 @@ final class StandardVocabularyBuilderTest extends TestCase
     }
 
     /**
+     * @covers ::<public>
+     * @covers ::validateContent
+     *
      * @throws Exception
      */
     public function testCreateWhenBaseLanguageIsInvalid(): void
@@ -136,6 +145,9 @@ final class StandardVocabularyBuilderTest extends TestCase
     }
 
     /**
+     * @covers ::<public>
+     * @covers ::validateContent
+     *
      * @throws Exception
      */
     public function testCreateWhenWordsIsInvalid(): void
@@ -156,6 +168,9 @@ final class StandardVocabularyBuilderTest extends TestCase
     }
 
     /**
+     * @covers ::<public>
+     * @covers ::validateContent
+     *
      * @throws Exception
      */
     public function testCreateWhenWordListIsEmpty(): void
@@ -176,6 +191,9 @@ final class StandardVocabularyBuilderTest extends TestCase
     }
 
     /**
+     * @covers ::<public>
+     * @covers ::validateContent
+     *
      * @throws Exception
      */
     public function testCreateWhenPhrasesIsInvalid(): void

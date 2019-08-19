@@ -30,8 +30,6 @@ final class TranslatorTest extends TestCase
     }
 
     /**
-     * @coversNothing
-     *
      * @throws Exception
      */
     public function testTranslate(): void
