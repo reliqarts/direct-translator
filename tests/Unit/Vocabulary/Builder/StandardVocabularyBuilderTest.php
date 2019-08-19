@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
 use ReliqArts\CreoleTranslator\Vocabulary\Builder;
+use ReliqArts\CreoleTranslator\Vocabulary\Builder\StandardVocabularyBuilder;
 use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
 
 /**
@@ -20,7 +21,7 @@ use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
  *
  * @internal
  */
-final class BuilderTest extends TestCase
+final class StandardVocabularyBuilderTest extends TestCase
 {
     /**
      * @var LanguageCodeChecker|ObjectProphecy
@@ -44,16 +45,13 @@ final class BuilderTest extends TestCase
             ->shouldBeCalledTimes(1)
             ->willReturn(true);
 
-        $this->subject = new Builder($this->languageCodeChecker->reveal());
+        $this->subject = new StandardVocabularyBuilder($this->languageCodeChecker->reveal());
     }
 
     /**
-     * @covers ::createStandard
-     * @covers ::validateParsedContent
-     *
      * @throws Exception
      */
-    public function testCreateFromRawContent(): void
+    public function testCreate(): void
     {
         $content = [
             'name' => 'Jamaican Patois',
@@ -66,7 +64,7 @@ final class BuilderTest extends TestCase
             ],
         ];
 
-        $result = $this->subject->createStandard($content);
+        $result = $this->subject->create($content);
 
         $this->assertSame('Jamaican Patois', $result->getName());
         $this->assertSame('en', $result->getLanguageCode());
@@ -85,12 +83,9 @@ final class BuilderTest extends TestCase
     }
 
     /**
-     * @covers ::createStandard
-     * @covers ::validateParsedContent
-     *
      * @throws Exception
      */
-    public function testCreateFromRawContentWhenNameIsInvalid(): void
+    public function testCreateWhenNameIsInvalid(): void
     {
         $content = [
             'name' => '',
@@ -110,16 +105,13 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid vocabulary name!');
 
-        $this->subject->createStandard($content);
+        $this->subject->create($content);
     }
 
     /**
-     * @covers ::createStandard
-     * @covers ::validateParsedContent
-     *
      * @throws Exception
      */
-    public function testCreateFromRawContentWhenBaseLanguageIsInvalid(): void
+    public function testCreateWhenBaseLanguageIsInvalid(): void
     {
         $content = [
             'name' => 'Jamaican Patois',
@@ -140,16 +132,13 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid base language: `en`');
 
-        $this->subject->createStandard($content);
+        $this->subject->create($content);
     }
 
     /**
-     * @covers ::createStandard
-     * @covers ::validateParsedContent
-     *
      * @throws Exception
      */
-    public function testCreateFromRawContentWhenWordsIsInvalid(): void
+    public function testCreateWhenWordsIsInvalid(): void
     {
         $content = [
             'name' => 'Jamaican Patois',
@@ -163,16 +152,13 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid type specified for words.');
 
-        $this->subject->createStandard($content);
+        $this->subject->create($content);
     }
 
     /**
-     * @covers ::createStandard
-     * @covers ::validateParsedContent
-     *
      * @throws Exception
      */
-    public function testCreateFromRawContentWhenWordListIsEmpty(): void
+    public function testCreateWhenWordListIsEmpty(): void
     {
         $content = [
             'name' => 'Jamaican Patois',
@@ -186,16 +172,13 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('No words defined for vocabulary!');
 
-        $this->subject->createStandard($content);
+        $this->subject->create($content);
     }
 
     /**
-     * @covers ::createStandard
-     * @covers ::validateParsedContent
-     *
      * @throws Exception
      */
-    public function testCreateFromRawContentWhenPhrasesIsInvalid(): void
+    public function testCreateWhenPhrasesIsInvalid(): void
     {
         $content = [
             'name' => 'Jamaican Patois',
@@ -209,6 +192,6 @@ final class BuilderTest extends TestCase
         $this->expectException(InvalidContent::class);
         $this->expectExceptionMessage('Invalid type specified for phrases.');
 
-        $this->subject->createStandard($content);
+        $this->subject->create($content);
     }
 }

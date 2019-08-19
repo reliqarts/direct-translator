@@ -10,9 +10,8 @@ use ReliqArts\CreoleTranslator\Translator;
 /**
  * Class ExecutorTest.
  *
- * @coversDefaultClass \ReliqArts\CreoleTranslator\Translation\Executor
- *
  * @internal
+ * @coversNothing
  */
 final class TranslatorTest extends TestCase
 {
@@ -31,7 +30,7 @@ final class TranslatorTest extends TestCase
     }
 
     /**
-     * @covers ::translate
+     * @coversNothing
      *
      * @throws Exception
      */

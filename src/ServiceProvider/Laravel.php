@@ -14,7 +14,11 @@ use ReliqArts\CreoleTranslator\Translation\Executor;
 use ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase;
 use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
 use ReliqArts\CreoleTranslator\Translator;
+use ReliqArts\CreoleTranslator\Vocabulary\Builder;
+use ReliqArts\CreoleTranslator\Vocabulary\Builder\StandardVocabularyBuilder;
 use ReliqArts\CreoleTranslator\Vocabulary\Loader;
+use ReliqArts\CreoleTranslator\Vocabulary\Reader;
+use ReliqArts\CreoleTranslator\Vocabulary\Reader\JsonReader;
 use ReliqArts\CreoleTranslator\VocabularyLoader;
 
 class Laravel extends IlluminateServiceProvider implements ServiceProvider
@@ -34,6 +38,8 @@ class Laravel extends IlluminateServiceProvider implements ServiceProvider
     {
         $this->app->singleton(ConfigProviderContract::class, LaravelConfigProvider::class);
         $this->app->singleton(VocabularyLoader::class, Loader::class);
+        $this->app->singleton(Builder::class, StandardVocabularyBuilder::class);
+        $this->app->singleton(Reader::class, JsonReader::class);
         $this->app->singleton(Translator::class, function (Application $app): Translator {
             $executor = new Executor($app->get(VocabularyLoader::class));
 

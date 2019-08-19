@@ -15,7 +15,11 @@ use ReliqArts\CreoleTranslator\Translation\Executor;
 use ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase;
 use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
 use ReliqArts\CreoleTranslator\Translator;
+use ReliqArts\CreoleTranslator\Vocabulary\Builder;
+use ReliqArts\CreoleTranslator\Vocabulary\Builder\StandardVocabularyBuilder;
 use ReliqArts\CreoleTranslator\Vocabulary\Loader;
+use ReliqArts\CreoleTranslator\Vocabulary\Reader;
+use ReliqArts\CreoleTranslator\Vocabulary\Reader\JsonReader;
 use ReliqArts\CreoleTranslator\VocabularyLoader;
 use function DI\autowire;
 use function DI\get;
@@ -81,6 +85,8 @@ class Open implements ServiceProvider
             OpenConfigProvider::class => autowire()
                 ->method('load'),
             Translator::class => get(Executor::class),
+            Builder::class => get(StandardVocabularyBuilder::class),
+            Reader::class => get(JsonReader::class),
             VocabularyLoader::class => get(Loader::class),
         ];
     }

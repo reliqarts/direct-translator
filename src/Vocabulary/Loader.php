@@ -59,7 +59,7 @@ final class Loader implements VocabularyLoader
         try {
             $filePath = $this->getVocabularyFilePath($key);
 
-            return $this->builder->createStandard($this->reader->read($filePath));
+            return $this->builder->create($this->reader->read($filePath));
         } catch (Exception $exception) {
             throw new LoadingFailed(
                 sprintf('Could not load vocabulary by key: `%s`', $key),
