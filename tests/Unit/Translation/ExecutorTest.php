@@ -87,7 +87,7 @@ final class ExecutorTest extends TestCase
             ->willReturn($expectedResult);
 
         $this->vocabularyLoader
-            ->loadByKey($vocabularyKey)
+            ->load($vocabularyKey)
             ->shouldBeCalledTimes(1)
             ->willReturn($vocabulary);
 
@@ -115,7 +115,7 @@ final class ExecutorTest extends TestCase
             ->shouldNotBeCalled();
 
         $this->vocabularyLoader
-            ->loadByKey($vocabularyKey)
+            ->load($vocabularyKey)
             ->shouldBeCalledTimes(1)
             ->willThrow(LoadingFailed::class);
 

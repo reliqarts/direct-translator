@@ -35,16 +35,16 @@ final class Loader implements VocabularyLoader
      *
      * @param ConfigProvider $configProvider
      * @param Reader         $reader
-     * @param Builder        $vocabularyBuilder
+     * @param Builder        $builder
      */
     public function __construct(
         ConfigProvider $configProvider,
         Reader $reader,
-        Builder $vocabularyBuilder
+        Builder $builder
     ) {
         $this->configProvider = $configProvider;
         $this->reader = $reader;
-        $this->builder = $vocabularyBuilder;
+        $this->builder = $builder;
     }
 
     /**
@@ -54,7 +54,7 @@ final class Loader implements VocabularyLoader
      *
      * @return VocabularyContract
      */
-    public function loadByKey(string $key): VocabularyContract
+    public function load(string $key): VocabularyContract
     {
         try {
             $filePath = $this->getVocabularyFilePath($key);

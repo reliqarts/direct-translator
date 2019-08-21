@@ -49,7 +49,7 @@ final class Executor implements Translator
     public function translate(string $text, string $vocabularyKey): string
     {
         try {
-            $vocabulary = $this->vocabularyLoader->loadByKey($vocabularyKey);
+            $vocabulary = $this->vocabularyLoader->load($vocabularyKey);
 
             return $this->format($this->replace($text, $vocabulary));
         } catch (ExceptionContract $exception) {

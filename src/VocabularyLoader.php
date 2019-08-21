@@ -13,5 +13,5 @@ interface VocabularyLoader
      *
      * @return Vocabulary
      */
-    public function loadByKey(string $key): Vocabulary;
+    public function load(string $key): Vocabulary;
 }
