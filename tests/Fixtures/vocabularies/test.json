@@ -1,0 +1,11 @@
+{
+  "name": "Jamaican Patois",
+  "baseLanguage": "en",
+  "words": {
+    "hello": "ello",
+    "hey": "ey"
+  },
+  "phrases": {
+    "how are you": "ow yuh duh"
+  }
+}

@@ -1,11 +1,13 @@
 {
   "name": "reliqarts/creole-translator",
-  "description": "Fully configurable creole translator.",
+  "description": "Fully configurable creole translator library.",
   "type": "library",
   "keywords": [
     "translator",
-    "creole",
-    "transcription"
+    "translation",
+    "statistical",
+    "machine",
+    "creole"
   ],
   "license": "MIT",
   "authors": [
@@ -15,9 +17,14 @@
     }
   ],
   "require": {
-    "php": "^7.2"
+    "php": "^7.2",
+    "ext-json": "*",
+    "doctrine/common": "^2.10",
+    "illuminate/support": "^5.8",
+    "php-di/php-di": "^6.0"
   },
   "require-dev": {
+    "orchestra/testbench": "^3.8",
     "phpro/grumphp": "^0.15.2",
     "phpunit/phpunit": "^8.2",
     "wearejust/grumphp-extra-tasks": "^2.2"
@@ -32,8 +39,18 @@
       "ReliqArts\\CreoleTranslator\\Tests\\": "tests/"
     }
   },
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
   "config": {
     "sort-packages": true
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "ReliqArts\\CreoleTranslator\\ServiceProvider\\Laravel"
+      ]
+    }
   },
   "minimum-stability": "dev",
   "prefer-stable": true
