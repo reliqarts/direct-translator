@@ -1,6 +1,6 @@
 {
   "name": "reliqarts/creole-translator",
-  "description": "Fully configurable creole translator.",
+  "description": "Fully configurable creole translator library.",
   "type": "library",
   "keywords": [
     "translator",
@@ -10,7 +10,6 @@
     "creole"
   ],
   "license": "MIT",
-  "version": "0.0.1-beta.2",
   "authors": [
     {
       "name": "Reliq",
