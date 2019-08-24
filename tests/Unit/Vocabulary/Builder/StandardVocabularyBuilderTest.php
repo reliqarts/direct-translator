@@ -4,20 +4,20 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Unit\Vocabulary;
+namespace ReliqArts\DirectTranslator\Tests\Unit\Vocabulary;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
-use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
-use ReliqArts\CreoleTranslator\Vocabulary\Builder;
-use ReliqArts\CreoleTranslator\Vocabulary\Builder\StandardVocabularyBuilder;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
+use ReliqArts\DirectTranslator\Utility\LanguageCodeChecker;
+use ReliqArts\DirectTranslator\Vocabulary\Builder;
+use ReliqArts\DirectTranslator\Vocabulary\Builder\StandardVocabularyBuilder;
+use ReliqArts\DirectTranslator\Vocabulary\Exception\InvalidContent;
 
 /**
  * Class VocabularyBuilderTest.
  *
- * @coversDefaultClass \ReliqArts\CreoleTranslator\Vocabulary\Builder\StandardVocabularyBuilder
+ * @coversDefaultClass \ReliqArts\DirectTranslator\Vocabulary\Builder\StandardVocabularyBuilder
  *
  * @internal
  */

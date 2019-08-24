@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Translation;
+namespace ReliqArts\DirectTranslator\Translation;
 
-use ReliqArts\CreoleTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\Vocabulary;
 
 interface Replacer
 {

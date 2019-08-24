@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Integration;
+namespace ReliqArts\DirectTranslator\Tests\Integration;
 
-use ReliqArts\CreoleTranslator\ConfigProvider\Open as OpenConfigProvider;
+use ReliqArts\DirectTranslator\ConfigProvider\Open as OpenConfigProvider;
 
 final class ConfigProvider extends OpenConfigProvider
 {

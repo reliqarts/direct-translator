@@ -4,20 +4,20 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Unit\Translation\Replacer;
+namespace ReliqArts\DirectTranslator\Tests\Unit\Translation\Replacer;
 
 use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
 use PHPUnit\Framework\TestCase;
-use ReliqArts\CreoleTranslator\Translation\Replacer;
-use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
-use ReliqArts\CreoleTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\Translation\Replacer;
+use ReliqArts\DirectTranslator\Translation\Replacer\PatternReplacer;
+use ReliqArts\DirectTranslator\Vocabulary;
 use SebastianBergmann\RecursionContext\InvalidArgumentException;
 
 /**
  * Class PhraseReplacerTest.
  *
- * @coversDefaultClass \ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer
+ * @coversDefaultClass \ReliqArts\DirectTranslator\Translation\Replacer\PatternReplacer
  *
  * @internal
  */

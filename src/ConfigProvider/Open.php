@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\ConfigProvider;
+namespace ReliqArts\DirectTranslator\ConfigProvider;
 
-use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
+use ReliqArts\DirectTranslator\ConfigProvider as ConfigProviderContract;
 
 class Open implements ConfigProviderContract
 {

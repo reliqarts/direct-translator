@@ -1,6 +1,6 @@
 {
-  "name": "reliqarts/creole-translator",
-  "description": "Fully configurable creole translator library.",
+  "name": "reliqarts/direct-translator",
+  "description": "Direct Translator is a plug-and-play library that offers direct phrase and word replacement translation capabilities.",
   "type": "library",
   "keywords": [
     "translator",
@@ -31,12 +31,12 @@
   },
   "autoload": {
     "psr-4": {
-      "ReliqArts\\CreoleTranslator\\": "src/"
+      "ReliqArts\\DirectTranslator\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "ReliqArts\\CreoleTranslator\\Tests\\": "tests/"
+      "ReliqArts\\DirectTranslator\\Tests\\": "tests/"
     }
   },
   "scripts": {

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Translation;
+namespace ReliqArts\DirectTranslator\Translation;
 
-use ReliqArts\CreoleTranslator\Exception as ExceptionContract;
-use ReliqArts\CreoleTranslator\Translation\Exception\TranslationFailed;
-use ReliqArts\CreoleTranslator\Translator;
-use ReliqArts\CreoleTranslator\Vocabulary;
-use ReliqArts\CreoleTranslator\VocabularyLoader;
+use ReliqArts\DirectTranslator\Exception as ExceptionContract;
+use ReliqArts\DirectTranslator\Translation\Exception\TranslationFailed;
+use ReliqArts\DirectTranslator\Translator;
+use ReliqArts\DirectTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\VocabularyLoader;
 
 final class Executor implements Translator
 {

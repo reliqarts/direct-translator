@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Vocabulary;
+namespace ReliqArts\DirectTranslator\Vocabulary;
 
 use DomainException;
 use Exception;
-use ReliqArts\CreoleTranslator\ConfigProvider;
-use ReliqArts\CreoleTranslator\Vocabulary as VocabularyContract;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\LoadingFailed;
-use ReliqArts\CreoleTranslator\VocabularyLoader;
+use ReliqArts\DirectTranslator\ConfigProvider;
+use ReliqArts\DirectTranslator\Vocabulary as VocabularyContract;
+use ReliqArts\DirectTranslator\Vocabulary\Exception\LoadingFailed;
+use ReliqArts\DirectTranslator\VocabularyLoader;
 
 final class Loader implements VocabularyLoader
 {

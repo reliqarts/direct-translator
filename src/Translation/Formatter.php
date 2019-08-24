@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Translation;
+namespace ReliqArts\DirectTranslator\Translation;
 
 interface Formatter
 {

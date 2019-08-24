@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Translation\Exception;
+namespace ReliqArts\DirectTranslator\Translation\Exception;
 
-use ReliqArts\CreoleTranslator\Translation\Exception;
+use ReliqArts\DirectTranslator\Translation\Exception;
 
 final class TranslationFailed extends Exception
 {

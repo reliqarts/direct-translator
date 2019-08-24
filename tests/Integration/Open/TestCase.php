@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Integration\Open;
+namespace ReliqArts\DirectTranslator\Tests\Integration\Open;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
-use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
-use ReliqArts\CreoleTranslator\ServiceProvider as ServiceProviderContract;
-use ReliqArts\CreoleTranslator\ServiceProvider\Open as ServiceProvider;
-use ReliqArts\CreoleTranslator\Tests\Integration\ConfigProvider;
+use ReliqArts\DirectTranslator\ConfigProvider as ConfigProviderContract;
+use ReliqArts\DirectTranslator\ServiceProvider as ServiceProviderContract;
+use ReliqArts\DirectTranslator\ServiceProvider\Open as ServiceProvider;
+use ReliqArts\DirectTranslator\Tests\Integration\ConfigProvider;
 use function DI\get;
 
 abstract class TestCase extends BaseTestCase

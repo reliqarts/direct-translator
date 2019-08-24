@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Vocabulary;
+namespace ReliqArts\DirectTranslator\Vocabulary;
 
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\ReadingFailed;
+use ReliqArts\DirectTranslator\Vocabulary\Exception\ReadingFailed;
 
 interface Reader
 {
