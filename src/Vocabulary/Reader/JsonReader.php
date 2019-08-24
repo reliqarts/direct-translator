@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Vocabulary\Reader;
+namespace ReliqArts\DirectTranslator\Vocabulary\Reader;
 
 use DomainException;
 use Exception;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\ReadingFailed;
-use ReliqArts\CreoleTranslator\Vocabulary\Reader;
+use ReliqArts\DirectTranslator\Vocabulary\Exception\ReadingFailed;
+use ReliqArts\DirectTranslator\Vocabulary\Reader;
 
 final class JsonReader implements Reader
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Constant;
+namespace ReliqArts\DirectTranslator\Constant;
 
 final class LanguageCodes
 {

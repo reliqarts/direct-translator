@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator;
+namespace ReliqArts\DirectTranslator;
 
 use Psr\Container\ContainerExceptionInterface;
 

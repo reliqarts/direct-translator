@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Integration\Laravel;
+namespace ReliqArts\DirectTranslator\Tests\Integration\Laravel;
 
-use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
-use ReliqArts\CreoleTranslator\ServiceProvider\Laravel;
-use ReliqArts\CreoleTranslator\Tests\Integration\ConfigProvider;
+use ReliqArts\DirectTranslator\ConfigProvider as ConfigProviderContract;
+use ReliqArts\DirectTranslator\ServiceProvider\Laravel;
+use ReliqArts\DirectTranslator\Tests\Integration\ConfigProvider;
 
 final class ServiceProvider extends Laravel
 {

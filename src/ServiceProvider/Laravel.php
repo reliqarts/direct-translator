@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\ServiceProvider;
+namespace ReliqArts\DirectTranslator\ServiceProvider;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 use Psr\Container\ContainerExceptionInterface;
-use ReliqArts\CreoleTranslator\ConfigProvider as ConfigProviderContract;
-use ReliqArts\CreoleTranslator\ConfigProvider\Laravel as LaravelConfigProvider;
-use ReliqArts\CreoleTranslator\ServiceProvider;
-use ReliqArts\CreoleTranslator\Translation\Executor;
-use ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase;
-use ReliqArts\CreoleTranslator\Translation\Replacer\PatternReplacer;
-use ReliqArts\CreoleTranslator\Translator;
-use ReliqArts\CreoleTranslator\Vocabulary\Builder;
-use ReliqArts\CreoleTranslator\Vocabulary\Builder\StandardVocabularyBuilder;
-use ReliqArts\CreoleTranslator\Vocabulary\Loader;
-use ReliqArts\CreoleTranslator\Vocabulary\Reader;
-use ReliqArts\CreoleTranslator\Vocabulary\Reader\JsonReader;
-use ReliqArts\CreoleTranslator\VocabularyLoader;
+use ReliqArts\DirectTranslator\ConfigProvider as ConfigProviderContract;
+use ReliqArts\DirectTranslator\ConfigProvider\Laravel as LaravelConfigProvider;
+use ReliqArts\DirectTranslator\ServiceProvider;
+use ReliqArts\DirectTranslator\Translation\Executor;
+use ReliqArts\DirectTranslator\Translation\Formatter\SentenceCase;
+use ReliqArts\DirectTranslator\Translation\Replacer\PatternReplacer;
+use ReliqArts\DirectTranslator\Translator;
+use ReliqArts\DirectTranslator\Vocabulary\Builder;
+use ReliqArts\DirectTranslator\Vocabulary\Builder\StandardVocabularyBuilder;
+use ReliqArts\DirectTranslator\Vocabulary\Loader;
+use ReliqArts\DirectTranslator\Vocabulary\Reader;
+use ReliqArts\DirectTranslator\Vocabulary\Reader\JsonReader;
+use ReliqArts\DirectTranslator\VocabularyLoader;
 
 class Laravel extends IlluminateServiceProvider implements ServiceProvider
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Utility;
+namespace ReliqArts\DirectTranslator\Utility;
 
-use ReliqArts\CreoleTranslator\Constant\LanguageCodes;
+use ReliqArts\DirectTranslator\Constant\LanguageCodes;
 
 class LanguageCodeChecker
 {

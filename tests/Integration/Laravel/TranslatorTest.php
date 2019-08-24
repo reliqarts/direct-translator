@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Integration\Laravel;
+namespace ReliqArts\DirectTranslator\Tests\Integration\Laravel;
 
 use Exception;
-use ReliqArts\CreoleTranslator\Translator;
+use ReliqArts\DirectTranslator\Translator;
 
 /**
  * Class ExecutorTest.

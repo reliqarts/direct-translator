@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Vocabulary\Builder;
+namespace ReliqArts\DirectTranslator\Vocabulary\Builder;
 
 use DomainException;
-use ReliqArts\CreoleTranslator\Utility\LanguageCodeChecker;
-use ReliqArts\CreoleTranslator\Vocabulary;
-use ReliqArts\CreoleTranslator\Vocabulary\Builder;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
-use ReliqArts\CreoleTranslator\Vocabulary\Standard;
+use ReliqArts\DirectTranslator\Utility\LanguageCodeChecker;
+use ReliqArts\DirectTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\Vocabulary\Builder;
+use ReliqArts\DirectTranslator\Vocabulary\Exception\InvalidContent;
+use ReliqArts\DirectTranslator\Vocabulary\Standard;
 
 final class StandardVocabularyBuilder implements Builder
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Vocabulary;
+namespace ReliqArts\DirectTranslator\Vocabulary;
 
-use ReliqArts\CreoleTranslator\Vocabulary;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\InvalidContent;
+use ReliqArts\DirectTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\Vocabulary\Exception\InvalidContent;
 
 interface Builder
 {

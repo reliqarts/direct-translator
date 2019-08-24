@@ -2,25 +2,25 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Unit\Translation;
+namespace ReliqArts\DirectTranslator\Tests\Unit\Translation;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
-use ReliqArts\CreoleTranslator\Translation\Exception\TranslationFailed;
-use ReliqArts\CreoleTranslator\Translation\Executor;
-use ReliqArts\CreoleTranslator\Translation\Formatter;
-use ReliqArts\CreoleTranslator\Translation\Replacer;
-use ReliqArts\CreoleTranslator\Vocabulary;
-use ReliqArts\CreoleTranslator\Vocabulary\Exception\LoadingFailed;
-use ReliqArts\CreoleTranslator\VocabularyLoader;
+use ReliqArts\DirectTranslator\Translation\Exception\TranslationFailed;
+use ReliqArts\DirectTranslator\Translation\Executor;
+use ReliqArts\DirectTranslator\Translation\Formatter;
+use ReliqArts\DirectTranslator\Translation\Replacer;
+use ReliqArts\DirectTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\Vocabulary\Exception\LoadingFailed;
+use ReliqArts\DirectTranslator\VocabularyLoader;
 use Throwable;
 
 /**
  * Class ExecutorTest.
  *
- * @coversDefaultClass \ReliqArts\CreoleTranslator\Translation\Executor
+ * @coversDefaultClass \ReliqArts\DirectTranslator\Translation\Executor
  *
  * @internal
  */

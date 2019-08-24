@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Integration\Open;
+namespace ReliqArts\DirectTranslator\Tests\Integration\Open;
 
 use Exception;
-use ReliqArts\CreoleTranslator\Translator;
+use ReliqArts\DirectTranslator\Translator;
 
 /**
  * Class ExecutorTest.

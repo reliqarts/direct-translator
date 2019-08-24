@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Vocabulary;
+namespace ReliqArts\DirectTranslator\Vocabulary;
 
-use ReliqArts\CreoleTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\Vocabulary;
 
 final class Standard implements Vocabulary
 {

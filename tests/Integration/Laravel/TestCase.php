@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Integration\Laravel;
+namespace ReliqArts\DirectTranslator\Tests\Integration\Laravel;
 
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 

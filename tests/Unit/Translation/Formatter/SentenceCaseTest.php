@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Tests\Unit\Translation\Formatter;
+namespace ReliqArts\DirectTranslator\Tests\Unit\Translation\Formatter;
 
 use Exception;
 use PHPUnit\Framework\TestCase;
-use ReliqArts\CreoleTranslator\Translation\Formatter;
-use ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase;
+use ReliqArts\DirectTranslator\Translation\Formatter;
+use ReliqArts\DirectTranslator\Translation\Formatter\SentenceCase;
 
 /**
  * Class SentenceCaseTest.
  *
- * @coversDefaultClass \ReliqArts\CreoleTranslator\Translation\Formatter\SentenceCase
+ * @coversDefaultClass \ReliqArts\DirectTranslator\Translation\Formatter\SentenceCase
  *
  * @internal
  */

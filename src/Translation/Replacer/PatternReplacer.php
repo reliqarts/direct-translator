@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Translation\Replacer;
+namespace ReliqArts\DirectTranslator\Translation\Replacer;
 
-use ReliqArts\CreoleTranslator\Translation\Replacer;
-use ReliqArts\CreoleTranslator\Vocabulary;
+use ReliqArts\DirectTranslator\Translation\Replacer;
+use ReliqArts\DirectTranslator\Vocabulary;
 
 final class PatternReplacer implements Replacer
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Vocabulary\Exception;
+namespace ReliqArts\DirectTranslator\Vocabulary\Exception;
 
-use ReliqArts\CreoleTranslator\Vocabulary\Exception;
+use ReliqArts\DirectTranslator\Vocabulary\Exception;
 
 final class InvalidContent extends Exception
 {

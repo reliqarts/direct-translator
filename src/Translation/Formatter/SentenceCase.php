@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace ReliqArts\CreoleTranslator\Translation\Formatter;
+namespace ReliqArts\DirectTranslator\Translation\Formatter;
 
-use ReliqArts\CreoleTranslator\Translation\Formatter;
+use ReliqArts\DirectTranslator\Translation\Formatter;
 
 final class SentenceCase implements Formatter
 {
