@@ -48,7 +48,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "ReliqArts\\CreoleTranslator\\ServiceProvider\\Laravel"
+        "ReliqArts\\DirectTranslator\\ServiceProvider\\Laravel"
       ]
     }
   },
