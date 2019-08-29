@@ -6,6 +6,11 @@ namespace ReliqArts\DirectTranslator\Utility;
 
 use ReliqArts\DirectTranslator\Constant\LanguageCodes;
 
+/**
+ * Class LanguageCodeChecker.
+ *
+ * @codeCoverageIgnore
+ */
 class LanguageCodeChecker
 {
     /**

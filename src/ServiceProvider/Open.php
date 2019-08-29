@@ -24,6 +24,11 @@ use ReliqArts\DirectTranslator\VocabularyLoader;
 use function DI\autowire;
 use function DI\get;
 
+/**
+ * Class Open.
+ *
+ * @codeCoverageIgnore
+ */
 class Open implements ServiceProvider
 {
     /**

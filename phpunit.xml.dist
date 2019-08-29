@@ -15,6 +15,12 @@
         <testsuite name="Creole Translator Tests">
             <directory suffix="Test.php">tests</directory>
         </testsuite>
+        <testsuite name="Creole Translator Feature Tests">
+            <directory suffix="Test.php">tests/Feature</directory>
+        </testsuite>
+        <testsuite name="Creole Translator Integration Tests">
+            <directory suffix="Test.php">tests/Integration</directory>
+        </testsuite>
         <testsuite name="Creole Translator Unit Tests">
             <directory suffix="Test.php">tests/Unit</directory>
         </testsuite>

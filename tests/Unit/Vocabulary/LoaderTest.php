@@ -9,6 +9,7 @@ use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use ReliqArts\DirectTranslator\ConfigProvider;
+use ReliqArts\DirectTranslator\Utility\RemoteFileAssistant;
 use ReliqArts\DirectTranslator\Vocabulary;
 use ReliqArts\DirectTranslator\Vocabulary\Builder;
 use ReliqArts\DirectTranslator\Vocabulary\Exception\LoadingFailed;
@@ -40,6 +41,11 @@ final class LoaderTest extends TestCase
     private $builder;
 
     /**
+     * @var RemoteFileAssistant
+     */
+    private $remoteFileAssistant;
+
+    /**
      * @var Reader
      */
     private $reader;
@@ -57,11 +63,13 @@ final class LoaderTest extends TestCase
         parent::setUp();
 
         $this->configProvider = $this->prophesize(ConfigProvider::class);
+        $this->remoteFileAssistant = $this->prophesize(RemoteFileAssistant::class);
         $this->builder = $this->prophesize(Builder::class);
         $this->reader = $this->prophesize(Reader::class);
 
         $this->subject = new Loader(
             $this->configProvider->reveal(),
+            $this->remoteFileAssistant->reveal(),
             $this->reader->reveal(),
             $this->builder->reveal()
         );
@@ -72,11 +80,11 @@ final class LoaderTest extends TestCase
      */
     public function testLoad(): void
     {
+        $vocabulary = $this->prophesize(Vocabulary::class)->reveal();
         $fileContents = [];
         $filepath = realpath(
             sprintf('%s/%s.%s', self::VACABULARY_DIR, self::VOCABULARY_KEY, 'json')
         );
-        $vocabulary = $this->prophesize(Vocabulary::class)->reveal();
 
         $this->configProvider
             ->getVocabularyDirectories()
@@ -84,6 +92,10 @@ final class LoaderTest extends TestCase
             ->willReturn([
                 self::VACABULARY_DIR,
             ]);
+
+        $this->remoteFileAssistant
+            ->fileExists(Argument::cetera())
+            ->shouldNotBeCalled();
 
         $this->reader
             ->read($filepath)
@@ -107,10 +119,79 @@ final class LoaderTest extends TestCase
         $this->configProvider
             ->getVocabularyDirectories()
             ->shouldBeCalledTimes(1)
-            ->willReturn([
-                'foo',
-                'bar',
-            ]);
+            ->willReturn(['foo', 'bar']);
+
+        $this->remoteFileAssistant
+            ->fileExists(Argument::cetera())
+            ->shouldNotBeCalled();
+
+        $this->reader
+            ->read(Argument::cetera())
+            ->shouldNotBeCalled();
+
+        $this->builder
+            ->create(Argument::cetera())
+            ->shouldNotBeCalled();
+
+        $this->expectException(LoadingFailed::class);
+        $this->expectExceptionMessage('Could not load vocabulary by key: `test`');
+
+        $this->subject->load(self::VOCABULARY_KEY);
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function testLoadFromUrl(): void
+    {
+        $vocabulary = $this->prophesize(Vocabulary::class)->reveal();
+        $fileContents = [];
+        $remoteVocabularyDirectory = 'http://remote';
+        $vocabularyDirectories = [$remoteVocabularyDirectory, 'foo'];
+        $remoteFilepath = sprintf('%s/%s.%s', $remoteVocabularyDirectory, self::VOCABULARY_KEY, 'json');
+
+        $this->configProvider
+            ->getVocabularyDirectories()
+            ->shouldBeCalledTimes(1)
+            ->willReturn($vocabularyDirectories);
+
+        $this->remoteFileAssistant
+            ->fileExists($remoteFilepath)
+            ->shouldBeCalledTimes(1)
+            ->willReturn(true);
+
+        $this->reader
+            ->read($remoteFilepath)
+            ->willReturn($fileContents);
+
+        $this->builder
+            ->create($fileContents)
+            ->shouldBeCalledTimes(1)
+            ->willReturn($vocabulary);
+
+        $result = $this->subject->load(self::VOCABULARY_KEY);
+
+        $this->assertSame($vocabulary, $result);
+    }
+
+    /**
+     * @throws Throwable
+     */
+    public function testLoadWhenRemoteFileNotFound(): void
+    {
+        $remoteVocabularyDirectory = 'http://remote';
+        $vocabularyDirectories = [$remoteVocabularyDirectory, 'foo'];
+        $remoteFilepath = sprintf('%s/%s.%s', $remoteVocabularyDirectory, self::VOCABULARY_KEY, 'json');
+
+        $this->configProvider
+            ->getVocabularyDirectories()
+            ->shouldBeCalledTimes(1)
+            ->willReturn($vocabularyDirectories);
+
+        $this->remoteFileAssistant
+            ->fileExists($remoteFilepath)
+            ->shouldBeCalledTimes(1)
+            ->willReturn(false);
 
         $this->reader
             ->read(Argument::cetera())
