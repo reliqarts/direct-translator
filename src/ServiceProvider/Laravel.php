@@ -21,6 +21,11 @@ use ReliqArts\DirectTranslator\Vocabulary\Reader;
 use ReliqArts\DirectTranslator\Vocabulary\Reader\JsonReader;
 use ReliqArts\DirectTranslator\VocabularyLoader;
 
+/**
+ * Class Laravel.
+ *
+ * @codeCoverageIgnore
+ */
 class Laravel extends IlluminateServiceProvider implements ServiceProvider
 {
     /**

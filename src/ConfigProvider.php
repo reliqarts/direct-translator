@@ -8,7 +8,7 @@ interface ConfigProvider
 {
     public const CONFIG_FILE_PATH = ServiceProvider::ASSETS_DIR . '/config/config.php';
 
-    public const CONFIG_KEY_PACKAGE = 'creoletranslator';
+    public const CONFIG_KEY_PACKAGE = 'directtranslator';
     public const CONFIG_KEY_VOCABULARY_DIRECTORIES = 'vocabulary_directories';
 
     /**
