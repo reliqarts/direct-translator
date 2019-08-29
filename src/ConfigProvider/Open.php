@@ -14,6 +14,8 @@ class Open implements ConfigProviderContract
     private $config;
 
     /**
+     * @codeCoverageIgnore
+     *
      * @param string $configFilePath
      */
     public function load(string $configFilePath = self::CONFIG_FILE_PATH)
