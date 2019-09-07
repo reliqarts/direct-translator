@@ -7,7 +7,7 @@ php:
 env:
   - LARAVEL='^5.8' TESTBENCH='^3.8' COMPOSER_FLAGS='--prefer-stable'
   - LARAVEL='^6.0' TESTBENCH='^4.0' COMPOSER_FLAGS='--prefer-stable'
-  - LARAVEL='dev-master'
+  - LARAVEL='dev-master' TESTBENCH='^4.0'
 
 matrix:
   fast_finish: true
