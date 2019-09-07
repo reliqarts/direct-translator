@@ -4,6 +4,12 @@ php:
   - 7.2
   - 7.3
 
+env:
+  - LARAVEL='^5.8'
+  - LARAVEL='^6.0'
+  - COMPOSER_FLAGS='--prefer-lowest'
+  - COMPOSER_FLAGS='--prefer-stable'
+
 matrix:
   fast_finish: true
   allow_failures:
@@ -15,9 +21,10 @@ cache:
 
 before_install:
   - travis_retry composer self-update
+  - travis_retry composer require --no-update --no-interaction "illuminate/support:${LARAVEL}"
 
 install:
-  - travis_retry composer install --no-interaction --prefer-dist
+  - travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction --prefer-dist --no-suggest
 
 script: ./vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
 
