@@ -5,10 +5,8 @@ php:
   - 7.3
 
 env:
-  - LARAVEL='^5.8' COMPOSER_FLAGS='--prefer-lowest'
-  - LARAVEL='^5.8' COMPOSER_FLAGS='--prefer-stable'
-  - LARAVEL='^6.0' COMPOSER_FLAGS='--prefer-lowest'
-  - LARAVEL='^6.0' COMPOSER_FLAGS='--prefer-stable'
+  - LARAVEL='^5.8' TESTBENCH='^3.8' COMPOSER_FLAGS='--prefer-stable'
+  - LARAVEL='^6.0' TESTBENCH='^4.0' COMPOSER_FLAGS='--prefer-stable'
   - LARAVEL='dev-master'
 
 matrix:
@@ -25,10 +23,10 @@ cache:
 
 before_install:
   - travis_retry composer self-update
-  - travis_retry composer require --no-update --no-interaction "illuminate/support:${LARAVEL}"
+  - travis_retry composer require --no-update --no-interaction "illuminate/support:${LARAVEL} "orchestra/testbench=${TESTBENCH}""
 
 install:
-  - travis_retry composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction --prefer-dist --no-suggest
+  - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist --no-suggest
 
 script: ./vendor/bin/phpunit --verbose --coverage-clover=coverage.xml
 
