@@ -20,7 +20,7 @@ cache:
 
 before_install:
   - travis_retry composer self-update
-  - travis_retry composer require --no-update --no-interaction "illuminate/support:${LARAVEL} "orchestra/testbench:${TESTBENCH}""
+  - travis_retry composer require --no-update --no-interaction "illuminate/support:${LARAVEL} "orchestra/testbench:${TESTBENCH}"
 
 install:
   - travis_retry composer update ${COMPOSER_FLAGS} --no-interaction --prefer-dist --no-suggest
