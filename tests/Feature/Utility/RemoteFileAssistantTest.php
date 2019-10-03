@@ -33,8 +33,8 @@ final class RemoteFileAssistantTest extends TestCase
      */
     public function testFileExists(): void
     {
-        $existingUrl = 'https://reliqarts.com';
-        $nonExistentUrl = 'https://reliqarts.co.m';
+        $existingUrl = 'https://iamreliq.com';
+        $nonExistentUrl = 'https://iamreliq.co.m';
 
         $this->assertTrue($this->subject->fileExists($existingUrl));
         $this->assertFalse($this->subject->fileExists($nonExistentUrl));

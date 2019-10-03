@@ -17,7 +17,7 @@ final class SentenceCase implements Formatter
      */
     public function apply(string $inputText): string
     {
-        $str = ucfirst(strtolower($inputText));
+        $str = ucfirst($inputText);
 
         return preg_replace_callback(
             self::PATTERN,
