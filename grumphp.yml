@@ -1,9 +1,7 @@
 # grumphp.yml
 parameters:
-  extensions:
-    - Wearejust\GrumPHPExtra\Extension\Loader
   tasks:
-    php_cs_auto_fixerv2:
+    phpcsfixer2:
       allow_risky: true
       cache_file: ~
       config: .php_cs
