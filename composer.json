@@ -20,7 +20,7 @@
     "php": "^8.0",
     "ext-json": "*",
     "doctrine/common": "^2.10",
-    "illuminate/support": "5.8 - 7",
+    "illuminate/support": "5.8 - 8",
     "php-di/php-di": "^6.0",
     "phpspec/prophecy-phpunit": "^2.0"
   },
