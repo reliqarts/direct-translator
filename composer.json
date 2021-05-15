@@ -17,16 +17,17 @@
     }
   ],
   "require": {
-    "php": "^7.4",
+    "php": "^8.0",
     "ext-json": "*",
     "doctrine/common": "^2.10",
     "illuminate/support": "5.8 - 7",
-    "php-di/php-di": "^6.0"
+    "php-di/php-di": "^6.0",
+    "phpspec/prophecy-phpunit": "^2.0"
   },
   "require-dev": {
-    "orchestra/testbench": "3.8 - 5",
-    "phpro/grumphp": "^0.18.0",
-    "phpunit/phpunit": "^8.5"
+    "orchestra/testbench": "3.8 - 6",
+    "phpro/grumphp": "^1.0",
+    "phpunit/phpunit": "^9.0"
   },
   "autoload": {
     "psr-4": {

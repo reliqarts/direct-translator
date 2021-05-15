@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ReliqArts\DirectTranslator\Tests\Unit\Translation\Formatter;
 
 use Exception;
-use PHPUnit\Framework\TestCase;
+use ReliqArts\DirectTranslator\Tests\Unit\TestCase;
 use ReliqArts\DirectTranslator\Translation\Formatter;
 use ReliqArts\DirectTranslator\Translation\Formatter\SentenceCase;
 

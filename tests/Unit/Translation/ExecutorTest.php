@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace ReliqArts\DirectTranslator\Tests\Unit\Translation;
 
 use Exception;
-use PHPUnit\Framework\TestCase;
+use ReliqArts\DirectTranslator\Tests\Unit\TestCase;
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
 use ReliqArts\DirectTranslator\Translation\Exception\TranslationFailed;

@@ -7,7 +7,7 @@ declare(strict_types=1);
 namespace ReliqArts\DirectTranslator\Tests\Unit\Vocabulary;
 
 use Exception;
-use PHPUnit\Framework\TestCase;
+use ReliqArts\DirectTranslator\Tests\Unit\TestCase;
 use Prophecy\Prophecy\ObjectProphecy;
 use ReliqArts\DirectTranslator\Utility\LanguageCodeChecker;
 use ReliqArts\DirectTranslator\Vocabulary\Builder;

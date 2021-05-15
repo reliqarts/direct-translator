@@ -8,7 +8,7 @@ namespace ReliqArts\DirectTranslator\Tests\Unit\Translation\Replacer;
 
 use Exception;
 use PHPUnit\Framework\ExpectationFailedException;
-use PHPUnit\Framework\TestCase;
+use ReliqArts\DirectTranslator\Tests\Unit\TestCase;
 use ReliqArts\DirectTranslator\Translation\Replacer;
 use ReliqArts\DirectTranslator\Translation\Replacer\PatternReplacer;
 use ReliqArts\DirectTranslator\Vocabulary;
