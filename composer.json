@@ -19,15 +19,15 @@
   "require": {
     "php": ">=7.4",
     "ext-json": "*",
-    "doctrine/common": "^2.10",
-    "illuminate/support": "5.8 - 8",
+    "doctrine/common": ">=2.10",
+    "illuminate/support": "5.8 - 9",
     "php-di/php-di": "^6.0",
     "phpspec/prophecy-phpunit": "^2.0"
   },
   "require-dev": {
-    "orchestra/testbench": "3.8 - 6",
+    "orchestra/testbench": "3.8 - 7",
     "phpro/grumphp": "^1.0",
-    "phpunit/phpunit": "^9.0"
+    "phpunit/phpunit": "^9.3"
   },
   "autoload": {
     "psr-4": {
@@ -40,7 +40,9 @@
     }
   },
   "scripts": {
-    "test": "vendor/bin/phpunit"
+    "test": "vendor/bin/phpunit",
+    "test:ci": "phpunit --verbose --colors=auto --coverage-clover=coverage.xml",
+    "test:unit": "phpunit --testsuite=Unit --verbose --coverage-clover=coverage.xml"
   },
   "config": {
     "sort-packages": true
